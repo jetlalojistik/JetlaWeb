@@ -247,6 +247,17 @@
             border-radius: 6px;
             position: relative;
         }
+        
+        /* Jetla Express linkini kırmızı yap */
+        header nav ul li a[href="express.html"] {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        header nav ul li a[href="express.html"]:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+        }
 
         header nav ul li a:hover {
             color: var(--primary-red);
@@ -1236,6 +1247,150 @@
 
         .footer-links a:hover {
             color: var(--primary-red);
+            cursor: pointer;
+        }
+        
+        /* Modal Stilleri */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        
+        .modal-close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        .modal-body h3 {
+            color: var(--primary-red);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .modal-body h3:first-child {
+            margin-top: 0;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 10px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.4em;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
         }
 
         footer p {
@@ -1409,23 +1564,100 @@
 
         @media (max-width: 480px) {
             header .logo img {
-                max-width: 120px;
-                /* Daha küçük logo */
+                max-width: 100px;
             }
 
             .hero-section {
-                padding: 80px 15px;
-                /* Daha az iç boşluk */
+                padding: 60px 10px;
             }
 
             .hero-section h1 {
-                font-size: 2.2em;
-                /* Daha da küçük başlık */
+                font-size: 1.8em;
+                line-height: 1.2;
             }
 
             .hero-section p {
-                font-size: 1.1em;
-                /* Daha da küçük paragraf */
+                font-size: 1em;
+            }
+            
+            /* Görseller için mobil uyumluluk */
+            img, svg {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            
+            .hero-section img,
+            .about-content img,
+            .expansion-content img,
+            .app-content img,
+            .partner-item img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Container genişlik ayarı */
+            .container {
+                padding: 0 15px;
+            }
+            
+            /* Tablo responsive */
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+            }
+            
+            /* Form alanları için iOS zoom önleme */
+            input[type="text"],
+            input[type="tel"],
+            input[type="email"],
+            input[type="date"],
+            input[type="number"],
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+            
+            /* Modal iyileştirmeleri */
+            .modal-content {
+                width: 98%;
+                max-height: 98vh;
+            }
+            
+            .modal-body {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.2em;
+            }
+            
+            /* Section padding iyileştirmeleri */
+            section {
+                padding: 40px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            /* Butonlar */
+            .btn {
+                padding: 10px 20px;
+                font-size: 1em;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* Footer */
+            .footer-content {
+                padding: 30px 15px;
+            }
+            
+            .footer-section {
+                margin-bottom: 25px;
             }
 
             .about-section p,
@@ -1719,6 +1951,7 @@
                     <li><a href="index.html#services">Hizmetlerimiz</a></li>
                     <li><a href="kurye-basvuru.html">Kurye Başvuru</a></li>
                     <li><a href="isletme-basvuru.html">İşletme Başvuru</a></li>
+                    <li><a href="express.html">Jetla Express</a></li>
                     <li><a href="index.html#contact">İletişim</a></li>
                 </ul>
             </nav>
@@ -2099,9 +2332,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Jetla Kurye. Tüm Hakları Saklıdır.</p>
                 <div class="footer-links">
-                    <a href="#kvkk">KVKK Aydınlatma Metni</a>
-                    <a href="#gizlilik">Gizlilik Politikası</a>
-                    <a href="#kullanim">Kullanım Koşulları</a>
+                    <a href="#" onclick="openModal('kvkk'); return false;">KVKK Aydınlatma Metni</a>
+                    <a href="#" onclick="openModal('gizlilik'); return false;">Gizlilik Politikası</a>
+                    <a href="#" onclick="openModal('kullanim'); return false;">Kullanım Koşulları</a>
                 </div>
             </div>
         </div>
@@ -2192,6 +2425,197 @@
                 }
             });
 
+        });
+    </script>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Başlık</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- İçerik buraya gelecek -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal İçerikleri
+        const modalContents = {
+            kvkk: {
+                title: 'KVKK Aydınlatma Metni',
+                content: `
+                    <h3>1. Veri Sorumlusu</h3>
+                    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kişisel verileriniz Jetla Kurye ("Şirket" veya "Biz") tarafından veri sorumlusu sıfatıyla işlenmektedir.</p>
+                    
+                    <h3>2. İşlenen Kişisel Veriler</h3>
+                    <p>Şirketimiz tarafından işlenen kişisel verileriniz şunlardır:</p>
+                    <ul>
+                        <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, TC Kimlik No, doğum tarihi</li>
+                        <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, adres bilgisi</li>
+                        <li><strong>Mesleki Bilgiler:</strong> Ehliyet bilgileri, araç bilgileri, tecrübe bilgisi</li>
+                        <li><strong>Diğer Bilgiler:</strong> Adli sicil kaydı, şirket durumu</li>
+                    </ul>
+                    
+                    <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
+                    <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                    <ul>
+                        <li>Kurye başvurularınızı değerlendirmek</li>
+                        <li>İş süreçlerini yönetmek</li>
+                        <li>Yasal yükümlülükleri yerine getirmek</li>
+                        <li>İletişim kurmak ve bilgilendirme yapmak</li>
+                    </ul>
+                    
+                    <h3>4. Kişisel Verilerin Aktarılması</h3>
+                    <p>Kişisel verileriniz, yasal yükümlülüklerimiz çerçevesinde ve yukarıda belirtilen amaçlarla sınırlı olarak, yasal yetkili kurum ve kuruluşlara aktarılabilir.</p>
+                    
+                    <h3>5. Kişisel Verilerin Saklanma Süresi</h3>
+                    <p>Kişisel verileriniz, işlenme amaçlarının gerektirdiği süre boyunca ve yasal saklama sürelerine uygun olarak saklanmaktadır.</p>
+                    
+                    <h3>6. KVKK Kapsamındaki Haklarınız</h3>
+                    <p>KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:</p>
+                    <ul>
+                        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                        <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+                        <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                        <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+                        <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+                        <li>KVKK'da öngörülen şartlar çerçevesinde silinmesini veya yok edilmesini isteme</li>
+                        <li>Düzeltme, silme, yok etme işlemlerinin, kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+                        <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
+                        <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+                    </ul>
+                    
+                    <h3>7. İletişim</h3>
+                    <p>KVKK kapsamındaki haklarınızı kullanmak için aşağıdaki iletişim bilgilerinden bize ulaşabilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            },
+            gizlilik: {
+                title: 'Gizlilik Politikası',
+                content: `
+                    <h3>1. Gizlilik Politikası Hakkında</h3>
+                    <p>Jetla Kurye olarak, kişisel verilerinizin korunmasına büyük önem veriyoruz. Bu gizlilik politikası, web sitemizi ziyaret ettiğinizde veya hizmetlerimizi kullandığınızda toplanan bilgilerin nasıl kullanıldığını açıklamaktadır.</p>
+                    
+                    <h3>2. Toplanan Bilgiler</h3>
+                    <p>Web sitemizde ve hizmetlerimizde aşağıdaki bilgiler toplanmaktadır:</p>
+                    <ul>
+                        <li>Başvuru formunda sağladığınız kişisel bilgiler</li>
+                        <li>İletişim formunda sağladığınız bilgiler</li>
+                        <li>Web sitesi kullanım verileri (çerezler, IP adresi vb.)</li>
+                    </ul>
+                    
+                    <h3>3. Bilgilerin Kullanımı</h3>
+                    <p>Toplanan bilgiler aşağıdaki amaçlarla kullanılmaktadır:</p>
+                    <ul>
+                        <li>Hizmetlerimizi sunmak ve geliştirmek</li>
+                        <li>Başvurularınızı değerlendirmek</li>
+                        <li>İletişim kurmak ve bilgilendirme yapmak</li>
+                        <li>Yasal yükümlülükleri yerine getirmek</li>
+                    </ul>
+                    
+                    <h3>4. Bilgilerin Korunması</h3>
+                    <p>Kişisel bilgilerinizin güvenliği bizim için önceliklidir. Bilgilerinizi yetkisiz erişim, değiştirme, ifşa veya imhadan korumak için uygun teknik ve idari önlemleri almaktayız.</p>
+                    
+                    <h3>5. Çerezler (Cookies)</h3>
+                    <p>Web sitemiz, kullanıcı deneyimini iyileştirmek için çerezler kullanmaktadır. Çerezler hakkında daha fazla bilgi için tarayıcı ayarlarınızı kontrol edebilirsiniz.</p>
+                    
+                    <h3>6. Üçüncü Taraf Bağlantılar</h3>
+                    <p>Web sitemizde üçüncü taraf web sitelerine bağlantılar bulunabilir. Bu sitelerin gizlilik uygulamalarından sorumlu değiliz.</p>
+                    
+                    <h3>7. Değişiklikler</h3>
+                    <p>Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında geçerli olacaktır.</p>
+                    
+                    <h3>8. İletişim</h3>
+                    <p>Gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            },
+            kullanim: {
+                title: 'Kullanım Koşulları',
+                content: `
+                    <h3>1. Genel Hükümler</h3>
+                    <p>Bu kullanım koşulları, Jetla Kurye web sitesini ("Site") kullanımınızı düzenlemektedir. Siteyi kullanarak, bu koşulları kabul etmiş sayılırsınız.</p>
+                    
+                    <h3>2. Hizmetlerin Kullanımı</h3>
+                    <p>Site üzerinden sunulan hizmetler aşağıdaki amaçlarla kullanılabilir:</p>
+                    <ul>
+                        <li>Kurye başvurusu yapmak</li>
+                        <li>İşletme başvurusu yapmak</li>
+                        <li>İletişim kurmak</li>
+                        <li>Bilgi almak</li>
+                    </ul>
+                    
+                    <h3>3. Kullanıcı Yükümlülükleri</h3>
+                    <p>Siteyi kullanırken aşağıdaki kurallara uymanız gerekmektedir:</p>
+                    <ul>
+                        <li>Doğru ve güncel bilgiler sağlamak</li>
+                        <li>Yasalara ve düzenlemelere uymak</li>
+                        <li>Başkalarının haklarını ihlal etmemek</li>
+                        <li>Siteyi kötüye kullanmamak veya zarar vermemek</li>
+                    </ul>
+                    
+                    <h3>4. Fikri Mülkiyet Hakları</h3>
+                    <p>Site içeriği, tasarımı ve tüm materyaller Jetla Kurye'nin fikri mülkiyetidir. İzinsiz kullanımı yasaktır.</p>
+                    
+                    <h3>5. Sorumluluk Reddi</h3>
+                    <p>Site, "olduğu gibi" sunulmaktadır. Hizmetlerin kesintisiz veya hatasız olacağı garanti edilmez.</p>
+                    
+                    <h3>6. Bağlantılar</h3>
+                    <p>Site üzerinde üçüncü taraf web sitelerine bağlantılar bulunabilir. Bu sitelerin içeriğinden sorumlu değiliz.</p>
+                    
+                    <h3>7. Değişiklikler</h3>
+                    <p>Bu kullanım koşulları zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında geçerli olacaktır.</p>
+                    
+                    <h3>8. Uygulanacak Hukuk</h3>
+                    <p>Bu kullanım koşulları Türkiye Cumhuriyeti yasalarına tabidir.</p>
+                    
+                    <h3>9. İletişim</h3>
+                    <p>Kullanım koşulları hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            }
+        };
+
+        // Modal Açma Fonksiyonu
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            
+            if (modalContents[type]) {
+                modalTitle.textContent = modalContents[type].title;
+                modalBody.innerHTML = modalContents[type].content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı engelle
+            }
+        }
+
+        // Modal Kapatma Fonksiyonu
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Sayfa kaydırmayı tekrar etkinleştir
+        }
+
+        // Modal dışına tıklandığında kapat
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC tuşu ile kapat
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 

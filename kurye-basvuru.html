@@ -247,6 +247,17 @@
             border-radius: 6px;
             position: relative;
         }
+        
+        /* Jetla Express linkini kırmızı yap */
+        header nav ul li a[href="express.html"] {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        header nav ul li a[href="express.html"]:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+        }
 
         header nav ul li a:hover {
             color: var(--primary-red);
@@ -370,6 +381,13 @@
             margin-bottom: 50px;
         }
         
+        /* Genel görsel uyumluluk */
+        img, svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         .form-header-image {
             width: 500px;
             height: auto;
@@ -381,9 +399,21 @@
             object-fit: contain;
         }
         
+        /* Form alanları için iOS zoom önleme */
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            font-size: 16px;
+        }
+        
         @media (max-width: 768px) {
             .form-header-image {
-                width: 300px;
+                width: 100%;
+                max-width: 300px;
             }
         }
 
@@ -1259,6 +1289,352 @@
 
         .footer-links a:hover {
             color: var(--primary-red);
+            cursor: pointer;
+        }
+        
+        /* Modal Stilleri */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        
+        .modal-close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        .modal-body h3 {
+            color: var(--primary-red);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .modal-body h3:first-child {
+            margin-top: 0;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 10px;
+        }
+        
+        /* KVKK Checkbox Stilleri */
+        .kvkk-checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            margin-top: 10px;
+        }
+        
+        .kvkk-checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .kvkk-label {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: var(--text-dark);
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .kvkk-link {
+            color: var(--primary-red);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        
+        .kvkk-link:hover {
+            color: var(--primary-red-dark);
+        }
+        
+        .kvkk-label .required {
+            color: var(--primary-red);
+        }
+        
+        /* Modal Onay Butonu */
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        .modal-confirm-btn {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+        
+        .modal-cancel-btn {
+            background: #e0e0e0;
+            color: var(--text-dark);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-cancel-btn:hover {
+            background: #d0d0d0;
+        }
+        
+        @media (max-width: 768px) {
+            .kvkk-checkbox-wrapper {
+                padding: 15px;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-confirm-btn,
+            .modal-cancel-btn {
+                width: 100%;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.4em;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+        }
+        
+        /* WhatsApp Modal Stilleri */
+        .whatsapp-modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+        
+        .whatsapp-modal-header {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        
+        .whatsapp-modal-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .whatsapp-modal-body {
+            padding: 30px;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        .whatsapp-message-preview {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .whatsapp-button {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-button i {
+            font-size: 1.3em;
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .whatsapp-modal-header {
+                padding: 15px 20px;
+            }
+            
+            .whatsapp-modal-header h2 {
+                font-size: 1.4em;
+            }
+            
+            .whatsapp-modal-body {
+                padding: 20px;
+            }
         }
 
         footer p {
@@ -1705,6 +2081,167 @@
             .form-group {
                 margin-bottom: 25px;
             }
+            
+            .form-group input[type="text"],
+            .form-group input[type="tel"],
+            .form-group input[type="date"],
+            .form-group input[type="number"],
+            .form-group select,
+            .form-group textarea {
+                padding: 12px 15px;
+                font-size: 16px; /* iOS zoom önleme */
+            }
+            
+            .form-group label {
+                font-size: 0.95em;
+            }
+            
+            .form-submit-btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 1em;
+            }
+            
+            .form-header-image {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .application-form-section {
+                padding: 60px 15px;
+            }
+            
+            .whatsapp-modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            .whatsapp-modal-header {
+                padding: 15px 20px;
+            }
+            
+            .whatsapp-modal-header h2 {
+                font-size: 1.3em;
+            }
+            
+            .whatsapp-modal-body {
+                padding: 20px;
+            }
+            
+            .whatsapp-message-preview {
+                font-size: 0.9em;
+                padding: 15px;
+            }
+            
+            .whatsapp-button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+        
+        /* Telefon numarası alanı için özel stil */
+        .phone-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .phone-prefix {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            font-weight: 500;
+            flex-shrink: 0;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .phone-input {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        /* Telefon numarası alanı mobil uyumluluk */
+        @media (max-width: 768px) {
+            .phone-input-wrapper {
+                flex-direction: row;
+                gap: 5px;
+                align-items: stretch;
+            }
+            
+            .phone-prefix {
+                padding: 12px 10px;
+                min-width: 55px;
+                font-size: 0.95em;
+            }
+            
+            .phone-input {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .phone-prefix {
+                padding: 10px 8px;
+                min-width: 50px;
+                font-size: 0.9em;
+            }
+        }
+        
+        /* Küçük ekranlar için ek iyileştirmeler */
+        @media (max-width: 480px) {
+            .application-form-section {
+                padding: 40px 10px;
+            }
+            
+            .application-form {
+                padding: 30px 15px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="tel"],
+            .form-group input[type="date"],
+            .form-group input[type="number"],
+            .form-group select,
+            .form-group textarea {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+            
+            .form-header-image {
+                max-width: 250px;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .modal-content,
+            .whatsapp-modal-content {
+                width: 98%;
+                max-height: 98vh;
+            }
+            
+            .modal-body,
+            .whatsapp-modal-body {
+                padding: 15px;
+            }
+            
+            .modal-header h2,
+            .whatsapp-modal-header h2 {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -1742,6 +2279,7 @@
                     <li><a href="index.html#services">Hizmetlerimiz</a></li>
                     <li><a href="kurye-basvuru.html">Kurye Başvuru</a></li>
                     <li><a href="isletme-basvuru.html">İşletme Başvuru</a></li>
+                    <li><a href="express.html">Jetla Express</a></li>
                     <li><a href="index.html#contact">İletişim</a></li>
                 </ul>
             </nav>
@@ -1796,9 +2334,9 @@
 
                     <div class="form-group">
                         <label for="telefon" class="required"><i class="fas fa-phone"></i> Telefon Numarası</label>
-                        <div style="display: flex; align-items: center; gap: 5px;">
-                            <span style="background: #f5f5f5; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; color: #333; font-weight: 500;">+90</span>
-                            <input type="tel" id="telefon" name="telefon" placeholder="5XX XXX XX XX" maxlength="10" pattern="[0-9]{10}" style="flex: 1;" required>
+                        <div class="phone-input-wrapper">
+                            <span class="phone-prefix">+90</span>
+                            <input type="tel" id="telefon" name="telefon" class="phone-input" placeholder="5XX XXX XX XX" maxlength="10" pattern="[0-9]{10}" required>
                         </div>
                     </div>
                 </div>
@@ -1869,6 +2407,15 @@
                     <input type="number" id="tecrube" name="tecrube" min="0" max="50" placeholder="Kurye tecrübeniz (yıl cinsinden)" required>
                 </div>
 
+                <div class="form-group">
+                    <div class="kvkk-checkbox-wrapper">
+                        <input type="checkbox" id="kvkkOnay" name="kvkkOnay" required>
+                        <label for="kvkkOnay" class="kvkk-label">
+                            <a href="#" onclick="event.preventDefault(); openKVKKModal(); return false;" class="kvkk-link">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum. <span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+
                 <button type="submit" class="form-submit-btn" id="submit-btn">
                     <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
                 </button>
@@ -1927,9 +2474,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Jetla Kurye. Tüm Hakları Saklıdır.</p>
                 <div class="footer-links">
-                    <a href="#kvkk">KVKK Aydınlatma Metni</a>
-                    <a href="#gizlilik">Gizlilik Politikası</a>
-                    <a href="#kullanim">Kullanım Koşulları</a>
+                    <a href="#" onclick="openModal('kvkk'); return false;">KVKK Aydınlatma Metni</a>
+                    <a href="#" onclick="openModal('gizlilik'); return false;">Gizlilik Politikası</a>
+                    <a href="#" onclick="openModal('kullanim'); return false;">Kullanım Koşulları</a>
                 </div>
             </div>
         </div>
@@ -2027,10 +2574,18 @@
 
             // Google Apps Script Web App URL'inizi buraya ekleyin
             // Örnek: const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxD1zbbY6Hbjtt-68k0V9xH7rUDu3ypNK94qO4F3fExUSofLFoQP8unjNNpEGvwiXYwMg/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxaAP1OsGCnnj2DL7pJD-ZNKfdTwjk-EbtSOruKfOQfnzoBnnWGxRHMT9TnInBW8w1k-A/exec';
 
             form.addEventListener('submit', async function (e) {
                 e.preventDefault();
+
+                // KVKK onay kontrolü
+                const kvkkCheckbox = document.getElementById('kvkkOnay');
+                if (!kvkkCheckbox || !kvkkCheckbox.checked) {
+                    showMessage('Lütfen KVKK Aydınlatma Metni\'ni okuyup onaylayınız.', 'error');
+                    kvkkCheckbox.focus();
+                    return;
+                }
 
                 // Form verilerini topla
                 const formData = new FormData(form);
@@ -2043,6 +2598,9 @@
                         data[key] = value;
                     }
                 });
+
+                // Form tipini belirle (kurye başvurusu)
+                data.formType = 'kurye';
 
                 // Submit butonunu devre dışı bırak
                 submitBtn.disabled = true;
@@ -2068,6 +2626,10 @@
                     
                     // Kullanıcıya başarı mesajı göster
                     showMessage('Başvurunuz başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.', 'success');
+                    
+                    // WhatsApp modalını aç
+                    openWhatsAppModal(data);
+                    
                     form.reset();
                     
                     // Formu temizle
@@ -2112,6 +2674,389 @@
             });
         });
     </script>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Başlık</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+<!-- İçerik buraya gelecek -->
+            </div>
+            <div class="modal-footer" id="modal-footer" style="display: none;">
+                <button class="modal-cancel-btn" onclick="cancelKVKKModal()">İptal</button>
+                <button class="modal-confirm-btn" onclick="confirmKVKKModal()">Okudum Anladım</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- KVKK Onay Modal -->
+    <div id="kvkk-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="kvkk-modal-title">KVKK Aydınlatma Metni</h2>
+                <button class="modal-close" onclick="cancelKVKKModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="kvkk-modal-body">
+<!-- İçerik buraya gelecek -->
+            </div>
+            <div class="modal-footer">
+                <button class="modal-cancel-btn" onclick="cancelKVKKModal()">İptal</button>
+                <button class="modal-confirm-btn" onclick="confirmKVKKModal()">Okudum Anladım</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal İçerikleri
+        const modalContents = {
+            kvkk: {
+                title: 'KVKK Aydınlatma Metni',
+                content: `
+                    <h3>1. Veri Sorumlusu</h3>
+                    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kişisel verileriniz Jetla Kurye ("Şirket" veya "Biz") tarafından veri sorumlusu sıfatıyla işlenmektedir.</p>
+                    
+                    <h3>2. İşlenen Kişisel Veriler</h3>
+                    <p>Şirketimiz tarafından işlenen kişisel verileriniz şunlardır:</p>
+                    <ul>
+                        <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, TC Kimlik No, doğum tarihi</li>
+                        <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, adres bilgisi</li>
+                        <li><strong>Mesleki Bilgiler:</strong> Ehliyet bilgileri, araç bilgileri, tecrübe bilgisi</li>
+                        <li><strong>Diğer Bilgiler:</strong> Adli sicil kaydı, şirket durumu</li>
+                    </ul>
+                    
+                    <h3>3. Kişisel Verilerin İşlenme Amaçları</h3>
+                    <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                    <ul>
+                        <li>Kurye başvurularınızı değerlendirmek</li>
+                        <li>İş süreçlerini yönetmek</li>
+                        <li>Yasal yükümlülükleri yerine getirmek</li>
+                        <li>İletişim kurmak ve bilgilendirme yapmak</li>
+                    </ul>
+                    
+                    <h3>4. Kişisel Verilerin Aktarılması</h3>
+                    <p>Kişisel verileriniz, yasal yükümlülüklerimiz çerçevesinde ve yukarıda belirtilen amaçlarla sınırlı olarak, yasal yetkili kurum ve kuruluşlara aktarılabilir.</p>
+                    
+                    <h3>5. Kişisel Verilerin Saklanma Süresi</h3>
+                    <p>Kişisel verileriniz, işlenme amaçlarının gerektirdiği süre boyunca ve yasal saklama sürelerine uygun olarak saklanmaktadır.</p>
+                    
+                    <h3>6. KVKK Kapsamındaki Haklarınız</h3>
+                    <p>KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:</p>
+                    <ul>
+                        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                        <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+                        <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                        <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+                        <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+                        <li>KVKK'da öngörülen şartlar çerçevesinde silinmesini veya yok edilmesini isteme</li>
+                        <li>Düzeltme, silme, yok etme işlemlerinin, kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+                        <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
+                        <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+                    </ul>
+                    
+                    <h3>7. İletişim</h3>
+                    <p>KVKK kapsamındaki haklarınızı kullanmak için aşağıdaki iletişim bilgilerinden bize ulaşabilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            },
+            gizlilik: {
+                title: 'Gizlilik Politikası',
+                content: `
+                    <h3>1. Gizlilik Politikası Hakkında</h3>
+                    <p>Jetla Kurye olarak, kişisel verilerinizin korunmasına büyük önem veriyoruz. Bu gizlilik politikası, web sitemizi ziyaret ettiğinizde veya hizmetlerimizi kullandığınızda toplanan bilgilerin nasıl kullanıldığını açıklamaktadır.</p>
+                    
+                    <h3>2. Toplanan Bilgiler</h3>
+                    <p>Web sitemizde ve hizmetlerimizde aşağıdaki bilgiler toplanmaktadır:</p>
+                    <ul>
+                        <li>Başvuru formunda sağladığınız kişisel bilgiler</li>
+                        <li>İletişim formunda sağladığınız bilgiler</li>
+                        <li>Web sitesi kullanım verileri (çerezler, IP adresi vb.)</li>
+                    </ul>
+                    
+                    <h3>3. Bilgilerin Kullanımı</h3>
+                    <p>Toplanan bilgiler aşağıdaki amaçlarla kullanılmaktadır:</p>
+                    <ul>
+                        <li>Hizmetlerimizi sunmak ve geliştirmek</li>
+                        <li>Başvurularınızı değerlendirmek</li>
+                        <li>İletişim kurmak ve bilgilendirme yapmak</li>
+                        <li>Yasal yükümlülükleri yerine getirmek</li>
+                    </ul>
+                    
+                    <h3>4. Bilgilerin Korunması</h3>
+                    <p>Kişisel bilgilerinizin güvenliği bizim için önceliklidir. Bilgilerinizi yetkisiz erişim, değiştirme, ifşa veya imhadan korumak için uygun teknik ve idari önlemleri almaktayız.</p>
+                    
+                    <h3>5. Çerezler (Cookies)</h3>
+                    <p>Web sitemiz, kullanıcı deneyimini iyileştirmek için çerezler kullanmaktadır. Çerezler hakkında daha fazla bilgi için tarayıcı ayarlarınızı kontrol edebilirsiniz.</p>
+                    
+                    <h3>6. Üçüncü Taraf Bağlantılar</h3>
+                    <p>Web sitemizde üçüncü taraf web sitelerine bağlantılar bulunabilir. Bu sitelerin gizlilik uygulamalarından sorumlu değiliz.</p>
+                    
+                    <h3>7. Değişiklikler</h3>
+                    <p>Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında geçerli olacaktır.</p>
+                    
+                    <h3>8. İletişim</h3>
+                    <p>Gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            },
+            kullanim: {
+                title: 'Kullanım Koşulları',
+                content: `
+                    <h3>1. Genel Hükümler</h3>
+                    <p>Bu kullanım koşulları, Jetla Kurye web sitesini ("Site") kullanımınızı düzenlemektedir. Siteyi kullanarak, bu koşulları kabul etmiş sayılırsınız.</p>
+                    
+                    <h3>2. Hizmetlerin Kullanımı</h3>
+                    <p>Site üzerinden sunulan hizmetler aşağıdaki amaçlarla kullanılabilir:</p>
+                    <ul>
+                        <li>Kurye başvurusu yapmak</li>
+                        <li>İşletme başvurusu yapmak</li>
+                        <li>İletişim kurmak</li>
+                        <li>Bilgi almak</li>
+                    </ul>
+                    
+                    <h3>3. Kullanıcı Yükümlülükleri</h3>
+                    <p>Siteyi kullanırken aşağıdaki kurallara uymanız gerekmektedir:</p>
+                    <ul>
+                        <li>Doğru ve güncel bilgiler sağlamak</li>
+                        <li>Yasalara ve düzenlemelere uymak</li>
+                        <li>Başkalarının haklarını ihlal etmemek</li>
+                        <li>Siteyi kötüye kullanmamak veya zarar vermemek</li>
+                    </ul>
+                    
+                    <h3>4. Fikri Mülkiyet Hakları</h3>
+                    <p>Site içeriği, tasarımı ve tüm materyaller Jetla Kurye'nin fikri mülkiyetidir. İzinsiz kullanımı yasaktır.</p>
+                    
+                    <h3>5. Sorumluluk Reddi</h3>
+                    <p>Site, "olduğu gibi" sunulmaktadır. Hizmetlerin kesintisiz veya hatasız olacağı garanti edilmez.</p>
+                    
+                    <h3>6. Bağlantılar</h3>
+                    <p>Site üzerinde üçüncü taraf web sitelerine bağlantılar bulunabilir. Bu sitelerin içeriğinden sorumlu değiliz.</p>
+                    
+                    <h3>7. Değişiklikler</h3>
+                    <p>Bu kullanım koşulları zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlandığında geçerli olacaktır.</p>
+                    
+                    <h3>8. Uygulanacak Hukuk</h3>
+                    <p>Bu kullanım koşulları Türkiye Cumhuriyeti yasalarına tabidir.</p>
+                    
+                    <h3>9. İletişim</h3>
+                    <p>Kullanım koşulları hakkında sorularınız için bizimle iletişime geçebilirsiniz:</p>
+                    <p><strong>E-posta:</strong> jetlakurye.sosyal@gmail.com<br>
+                    <strong>Telefon:</strong> 0544 949 50 08</p>
+                `
+            }
+        };
+
+        // Modal Açma Fonksiyonu
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalFooter = document.getElementById('modal-footer');
+            
+            if (modalContents[type]) {
+                modalTitle.textContent = modalContents[type].title;
+                modalBody.innerHTML = modalContents[type].content;
+                // KVKK modalı değilse footer'ı gizle
+                if (type !== 'kvkk') {
+                    modalFooter.style.display = 'none';
+                }
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı engelle
+            }
+        }
+
+        // KVKK Modal Açma Fonksiyonu (Checkbox'tan)
+        function openKVKKModal() {
+            const kvkkModal = document.getElementById('kvkk-modal');
+            const kvkkModalTitle = document.getElementById('kvkk-modal-title');
+            const kvkkModalBody = document.getElementById('kvkk-modal-body');
+            
+            if (modalContents.kvkk) {
+                kvkkModalTitle.textContent = modalContents.kvkk.title;
+                kvkkModalBody.innerHTML = modalContents.kvkk.content;
+                kvkkModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // KVKK Modal Onay Fonksiyonu
+        function confirmKVKKModal() {
+            const kvkkCheckbox = document.getElementById('kvkkOnay');
+            if (kvkkCheckbox) {
+                kvkkCheckbox.checked = true;
+            }
+            cancelKVKKModal();
+        }
+
+        // KVKK Modal İptal Fonksiyonu
+        function cancelKVKKModal() {
+            const kvkkModal = document.getElementById('kvkk-modal');
+            const kvkkCheckbox = document.getElementById('kvkkOnay');
+            
+            kvkkModal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Modal kapatıldığında checkbox'ı false yap
+            if (kvkkCheckbox && !kvkkCheckbox.checked) {
+                kvkkCheckbox.checked = false;
+            }
+        }
+
+        // Modal Kapatma Fonksiyonu
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Sayfa kaydırmayı tekrar etkinleştir
+        }
+
+        // Modal dışına tıklandığında kapat
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            const kvkkModal = document.getElementById('kvkk-modal');
+            
+            if (event.target === modal) {
+                closeModal();
+            }
+            if (event.target === kvkkModal) {
+                cancelKVKKModal();
+            }
+        }
+        
+        // KVKK Checkbox tıklama kontrolü
+        document.addEventListener('DOMContentLoaded', function() {
+            const kvkkCheckbox = document.getElementById('kvkkOnay');
+            if (kvkkCheckbox) {
+                kvkkCheckbox.addEventListener('change', function() {
+                    // Eğer checkbox işaretleniyorsa modal aç
+                    if (this.checked) {
+                        // Checkbox'ı önce false yap, modal açılsın
+                        this.checked = false;
+                        openKVKKModal();
+                    }
+                });
+            }
+        });
+
+        // ESC tuşu ile kapat
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const kvkkModal = document.getElementById('kvkk-modal');
+                const whatsappModal = document.getElementById('whatsapp-modal');
+                if (kvkkModal && kvkkModal.classList.contains('active')) {
+                    cancelKVKKModal();
+                } else if (whatsappModal && whatsappModal.classList.contains('active')) {
+                    closeWhatsAppModal();
+                } else {
+                    closeModal();
+                }
+            }
+        });
+        
+        // WhatsApp Modal Fonksiyonları
+        function openWhatsAppModal(formData) {
+            const whatsappModal = document.getElementById('whatsapp-modal');
+            const whatsappMessagePreview = document.getElementById('whatsapp-message-preview');
+            const whatsappLink = document.getElementById('whatsapp-link');
+            
+            // Form verilerini WhatsApp mesajı formatına çevir
+            const message = formatWhatsAppMessage(formData);
+            
+            // Mesaj önizlemesini göster
+            whatsappMessagePreview.textContent = message;
+            
+            // WhatsApp linkini oluştur
+            const phoneNumber = '905449495008'; // WhatsApp numarası
+            const encodedMessage = encodeURIComponent(message);
+            whatsappLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Modal'ı göster
+            whatsappModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeWhatsAppModal() {
+            const whatsappModal = document.getElementById('whatsapp-modal');
+            whatsappModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function formatWhatsAppMessage(data) {
+            const fieldLabels = {
+                adSoyad: 'Ad Soyad',
+                cinsiyet: 'Cinsiyet',
+                tcKimlikNo: 'TC Kimlik No',
+                telefon: 'Telefon Numarası',
+                dogumTarihi: 'Doğum Tarihi',
+                adres: 'Adres',
+                aracTuru: 'Araç Türü',
+                ehliyet: 'Ehliyet',
+                motorsikletModeli: 'Motorsiklet Modeli',
+                adliSicilKaydi: 'Adli Sicil Kaydı',
+                sirketDurumu: 'Şirket Durumu',
+                tecrube: 'Tecrübe (Yıl)'
+            };
+            
+            let message = '🚚 *Kurye Başvuru Formu*\n\n';
+            message += 'Merhaba, Jetla Kurye\'ye kurye başvurusu yapmak istiyorum.\n\n';
+            message += '*Başvuru Bilgileri:*\n';
+            message += '━━━━━━━━━━━━━━━━━━━━\n\n';
+            
+            // Form verilerini sırayla ekle
+            const order = ['adSoyad', 'cinsiyet', 'tcKimlikNo', 'telefon', 'dogumTarihi', 'adres', 'aracTuru', 'ehliyet', 'motorsikletModeli', 'adliSicilKaydi', 'sirketDurumu', 'tecrube'];
+            
+            order.forEach(key => {
+                if (data[key] && data[key].trim() !== '') {
+                    const label = fieldLabels[key] || key;
+                    message += `*${label}:* ${data[key]}\n`;
+                }
+            });
+            
+            message += '\n━━━━━━━━━━━━━━━━━━━━\n';
+            message += 'Teşekkürler!';
+            
+            return message;
+        }
+        
+        // WhatsApp modal dışına tıklandığında kapat
+        window.onclick = function(event) {
+            const whatsappModal = document.getElementById('whatsapp-modal');
+            if (event.target === whatsappModal) {
+                closeWhatsAppModal();
+            }
+        };
+        
+        // ESC tuşu ile WhatsApp modalını kapat
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const whatsappModal = document.getElementById('whatsapp-modal');
+                if (whatsappModal.classList.contains('active')) {
+                    closeWhatsAppModal();
+                }
+            }
+        });
+    </script>
+
+    <!-- WhatsApp Modal -->
+    <div id="whatsapp-modal" class="modal">
+        <div class="whatsapp-modal-content">
+            <div class="whatsapp-modal-header">
+                <h2><i class="fab fa-whatsapp"></i> WhatsApp ile Gönder</h2>
+                <button class="modal-close" onclick="closeWhatsAppModal()">&times;</button>
+            </div>
+            <div class="whatsapp-modal-body">
+                <p>Başvurunuz başarıyla kaydedildi! Aşağıdaki mesajı WhatsApp üzerinden göndermek için butona tıklayın:</p>
+                <div class="whatsapp-message-preview" id="whatsapp-message-preview"></div>
+                <a href="#" id="whatsapp-link" target="_blank" class="whatsapp-button" onclick="closeWhatsAppModal()">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp'ta Aç ve Gönder
+                </a>
+            </div>
+        </div>
+    </div>
 
 </body>
 

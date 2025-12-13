@@ -1,18 +1,19 @@
 /**
- * Google Apps Script - Kurye Başvuru Formu
+ * Google Apps Script - Kurye ve İşletme Başvuru Formları
  * 
- * Bu script, web formundan gelen verileri Google Sheets'e kaydeder.
+ * Bu script, web formlarından gelen verileri Google Sheets'e kaydeder.
+ * Hem kurye hem de işletme başvurularını aynı sheet'te farklı sayfalara kaydeder.
  * 
  * KURULUM ADIMLARI:
  * 1. Google Sheets dosyanızı açın: https://docs.google.com/spreadsheets/d/1Us1BUsm9GPCk1qQGUgeoBSPQ8x-iwq8ubKaNvZBJc0I/edit
  * 2. Menüden: Extensions > Apps Script
  * 3. Aşağıdaki kodu yapıştırın
- * 4. SCRIPT_PROP değişkenindeki ID'yi kendi Sheets ID'nizle değiştirin
+ * 4. SHEET_ID değişkenindeki ID'yi kontrol edin
  * 5. Deploy > New deployment > Type: Web app
  * 6. Execute as: Me (your email)
  * 7. Who has access: Anyone
  * 8. Deploy butonuna tıklayın
- * 9. Web app URL'ini kopyalayın ve index.html dosyasındaki SCRIPT_URL'e yapıştırın
+ * 9. Web app URL'ini kopyalayın ve HTML dosyalarındaki SCRIPT_URL'e yapıştırın
  */
 
 // Google Sheets ID'nizi buraya yapıştırın
@@ -34,7 +35,7 @@ function doGet(e) {
     .createTextOutput(JSON.stringify({
       "result": "success",
       "message": "Google Apps Script çalışıyor!",
-      "sheet": "Adaylar"
+      "sheets": ["Adaylar", "İşletme Başvuruları"]
     }))
     .setMimeType(ContentService.MimeType.JSON);
 }
@@ -59,56 +60,101 @@ function doPost(e) {
       throw new Error("Veri alınamadı");
     }
     
+    // Form tipini kontrol et (kurye veya işletme)
+    const formType = data.formType || 'kurye';
+    
     // Google Sheets'i aç
     const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
-    // Tab/Sheet adı: "Adaylar" (Google Sheets'teki tab adı)
-    let sheet = spreadsheet.getSheetByName("Adaylar");
     
-    // Eğer sheet yoksa oluştur
-    if (!sheet) {
-      sheet = spreadsheet.insertSheet("Adaylar");
+    if (formType === 'isletme') {
+      // İşletme Başvuruları sayfası
+      let sheet = spreadsheet.getSheetByName("İşletme Başvuruları");
       
-      // Başlıkları ekle
-      sheet.getRange(1, 1, 1, 12).setValues([[
-        "Ad Soyad",
-        "Cinsiyet",
-        "TC Kimlik No",
-        "Telefon Numarası",
-        "Doğum Tarihi",
-        "Adres",
-        "Araç Türü",
-        "Ehliyet",
-        "Motorsiklet Modeli",
-        "Adli Sicil Kaydı",
-        "Şirket Durumu",
-        "Tecrübe"
-      ]]);
+      // Eğer sheet yoksa oluştur
+      if (!sheet) {
+        sheet = spreadsheet.insertSheet("İşletme Başvuruları");
+        
+        // Başlıkları ekle
+        sheet.getRange(1, 1, 1, 9).setValues([[
+          "İşletme Adı",
+          "Yetkili Kişi Adı Soyadı",
+          "Telefon Numarası",
+          "E-posta Adresi",
+          "İşletme Türü",
+          "İşletme Adresi",
+          "İşletme Konum",
+          "İşletme Konum Linki",
+          "Mesaj"
+        ]]);
+        
+        // Başlık satırını kalın yap
+        sheet.getRange(1, 1, 1, 9).setFontWeight("bold");
+      }
       
-      // Başlık satırını kalın yap
-      sheet.getRange(1, 1, 1, 12).setFontWeight("bold");
+      // Veriyi ekle
+      sheet.appendRow([
+        data.isletmeAdi || "",
+        data.yetkiliKisi || "",
+        data.telefon || "",
+        data.email || "",
+        data.isletmeTuru || "",
+        data.adres || "",
+        data.isletmeKonum || "",
+        data.isletmeKonumLink || "",
+        data.mesaj || ""
+      ]);
+      
+    } else {
+      // Kurye Başvuruları sayfası (varsayılan)
+      let sheet = spreadsheet.getSheetByName("Adaylar");
+      
+      // Eğer sheet yoksa oluştur
+      if (!sheet) {
+        sheet = spreadsheet.insertSheet("Adaylar");
+        
+        // Başlıkları ekle
+        sheet.getRange(1, 1, 1, 12).setValues([[
+          "Ad Soyad",
+          "Cinsiyet",
+          "TC Kimlik No",
+          "Telefon Numarası",
+          "Doğum Tarihi",
+          "Adres",
+          "Araç Türü",
+          "Ehliyet",
+          "Motorsiklet Modeli",
+          "Adli Sicil Kaydı",
+          "Şirket Durumu",
+          "Tecrübe"
+        ]]);
+        
+        // Başlık satırını kalın yap
+        sheet.getRange(1, 1, 1, 12).setFontWeight("bold");
+      }
+      
+      // Veriyi ekle
+      sheet.appendRow([
+        data.adSoyad || "",
+        data.cinsiyet || "",
+        data.tcKimlikNo || "",
+        data.telefon || "",
+        data.dogumTarihi || "",
+        data.adres || "",
+        data.aracTuru || "",
+        data.ehliyet || "",
+        data.motorsikletModeli || "",
+        data.adliSicilKaydi || "",
+        data.sirketDurumu || "",
+        data.tecrube || ""
+      ]);
     }
-    
-    // Veriyi ekle
-    sheet.appendRow([
-      data.adSoyad || "",
-      data.cinsiyet || "",
-      data.tcKimlikNo || "",
-      data.telefon || "",
-      data.dogumTarihi || "",
-      data.adres || "",
-      data.aracTuru || "",
-      data.ehliyet || "",
-      data.motorsikletModeli || "",
-      data.adliSicilKaydi || "",
-      data.sirketDurumu || "",
-      data.tecrube || ""
-    ]);
     
     // Başarılı yanıt döndür
     return ContentService
       .createTextOutput(JSON.stringify({
         "result": "success",
-        "message": "Başvuru başarıyla kaydedildi."
+        "message": "Başvuru başarıyla kaydedildi.",
+        "formType": formType
       }))
       .setMimeType(ContentService.MimeType.JSON);
       
