@@ -140,6 +140,38 @@
             color: var(--secondary-white);
         }
 
+        /* Hamburger menü butonu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
         /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
@@ -241,6 +273,11 @@
             box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
         }
 
+        .location-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
         .location-btn {
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
             color: white;
@@ -250,7 +287,15 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
+            flex: 1;
+        }
+
+        .location-btn.map-btn {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #2563EB 100%);
+        }
+
+        .location-btn.map-btn:hover {
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .location-btn:hover {
@@ -262,6 +307,191 @@
             background: #ccc;
             cursor: not-allowed;
             transform: none;
+        }
+
+        /* Map Modal Styles */
+        .map-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .map-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-modal-content {
+            background-color: var(--secondary-white);
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            max-height: 800px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        .map-modal-header {
+            padding: 20px 25px;
+            border-bottom: 2px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .map-modal-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map-modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .map-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .map-modal-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .map-search-container {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .map-search-container input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            background-color: var(--secondary-white);
+        }
+
+        .map-search-container input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .map-modal-map {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            min-height: 400px;
+        }
+
+        .map-modal-footer {
+            padding: 20px;
+            border-top: 2px solid var(--light-gray);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .map-modal-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-modal-btn.confirm {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: white;
+        }
+
+        .map-modal-btn.confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .map-modal-btn.cancel {
+            background: var(--light-gray);
+            color: var(--text-dark);
+        }
+
+        .map-modal-btn.cancel:hover {
+            background: var(--border-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsive for Map Modal */
+        @media (max-width: 768px) {
+            .map-modal-content {
+                width: 100%;
+                height: 100vh;
+                max-height: 100vh;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .map-modal-header {
+                border-radius: 0;
+            }
+
+            .location-buttons {
+                flex-direction: column;
+            }
+
+            .location-btn {
+                width: 100%;
+            }
         }
 
         .weight-input-group {
@@ -483,24 +713,6 @@
             color: var(--text-lighter);
         }
 
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: var(--secondary-white);
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: color 0.3s ease;
-            padding: 5px 0;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-red);
-        }
 
         /* Responsive */
         @media (max-width: 968px) {
@@ -519,6 +731,90 @@
         }
 
         @media (max-width: 768px) {
+            /* Top Bar Mobil */
+            .top-bar {
+                padding: 8px 0;
+                font-size: 0.8em;
+            }
+
+            .top-bar-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .top-bar a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            /* Header Mobil */
+            header {
+                padding: 10px 0;
+            }
+
+            header .container {
+                position: relative;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+
+            header nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--secondary-white);
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                padding-top: 80px;
+                overflow-y: auto;
+            }
+
+            header nav.active {
+                right: 0;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            header nav ul li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            header nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                width: 100%;
+                text-align: left;
+                font-size: 1.1em;
+            }
+
+            header nav ul li a:hover {
+                background-color: var(--light-gray);
+                color: var(--primary-red);
+            }
+
+            /* Hero Section Mobil */
+            .hero-section {
+                padding: 60px 20px;
+            }
+
             .hero-section h1 {
                 font-size: 2em;
             }
@@ -527,13 +823,17 @@
                 font-size: 1.1em;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
+            /* Express Info Section Mobil */
+            .express-info-section {
+                padding: 40px 20px;
             }
 
             .express-info-section h2 {
                 font-size: 2em;
+            }
+
+            .express-info-section p {
+                font-size: 1em;
             }
 
             .location-panel {
@@ -616,74 +916,6 @@
                 flex-direction: column;
                 gap: 10px;
             }
-
-            .modal-content {
-                width: 95%;
-                max-height: 95vh;
-            }
-
-            .modal-header {
-                padding: 15px 20px;
-            }
-
-            .modal-header h2 {
-                font-size: 1.2em;
-            }
-
-            .modal-body {
-                padding: 20px 15px;
-            }
-
-            .modal-body h3 {
-                font-size: 1.1em;
-            }
-
-            /* Kurye Modal Mobil */
-            .kurye-modal-content {
-                width: 98%;
-                max-height: 95vh;
-            }
-
-            .kurye-map-container {
-                height: 300px;
-            }
-
-            .kurye-info-panel {
-                margin: 0 15px 15px;
-                padding: 15px;
-            }
-
-            .kurye-info-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-
-            .kurye-info-item span {
-                text-align: left;
-                margin-left: 0;
-            }
-
-            .kurye-modal-actions {
-                padding: 0 15px 20px;
-            }
-
-            .kurye-confirm-btn {
-                width: 100%;
-                padding: 12px;
-            }
-
-            .success-modal-content {
-                width: 95%;
-            }
-
-            .success-icon {
-                font-size: 3em;
-            }
-
-            .success-modal-body h3 {
-                font-size: 1.2em;
-            }
         }
     </style>
 </head>
@@ -708,6 +940,11 @@
             <div class="logo">
                 <img src="jet.svg" alt="Jetla Kurye Logo">
             </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav>
                 <ul>
                     <li><a href="index.html">Anasayfa</a></li>
@@ -758,9 +995,14 @@
                         <label for="start-location"><i class="fas fa-map-marker-alt"></i> Başlangıç Noktası</label>
                         <div class="location-input-wrapper">
                             <input type="text" id="start-location" placeholder="Adres veya konum giriniz">
-                            <button type="button" id="get-start-location" class="location-btn">
-                                <i class="fas fa-search"></i> Konum Seç
-                            </button>
+                            <div class="location-buttons">
+                                <button type="button" id="get-start-location" class="location-btn">
+                                    <i class="fas fa-search"></i> Konum Seç
+                                </button>
+                                <button type="button" id="map-select-start" class="location-btn map-btn">
+                                    <i class="fas fa-map"></i> Haritada Seç
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -768,15 +1010,20 @@
                         <label for="end-location"><i class="fas fa-flag"></i> Bitiş Noktası</label>
                         <div class="location-input-wrapper">
                             <input type="text" id="end-location" placeholder="Adres veya konum giriniz">
-                            <button type="button" id="get-end-location" class="location-btn">
-                                <i class="fas fa-search"></i> Konum Seç
-                            </button>
+                            <div class="location-buttons">
+                                <button type="button" id="get-end-location" class="location-btn">
+                                    <i class="fas fa-search"></i> Konum Seç
+                                </button>
+                                <button type="button" id="map-select-end" class="location-btn map-btn">
+                                    <i class="fas fa-map"></i> Haritada Seç
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="weight-input-group">
-                        <label for="weight"><i class="fas fa-weight"></i> Ağırlık (kg)</label>
-                        <input type="number" id="weight" placeholder="Paket ağırlığını giriniz" min="0.1" step="0.1" value="1">
+                        <label for="weight"><i class="fas fa-weight"></i> Ağırlık (kg) <span style="font-size: 0.8em; color: var(--text-light);">(Maksimum 20 kg)</span></label>
+                        <input type="number" id="weight" placeholder="Paket ağırlığını giriniz" min="0.1" max="20" step="0.1" value="1">
                     </div>
 
                     <div class="route-info" id="route-info">
@@ -808,6 +1055,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Map Selection Modal -->
+    <div id="map-modal" class="map-modal">
+        <div class="map-modal-content">
+            <div class="map-modal-header">
+                <h3><i class="fas fa-map-marker-alt"></i> Haritada Konum Seçin</h3>
+                <button class="map-modal-close" onclick="closeMapModal()">&times;</button>
+            </div>
+            <div class="map-modal-body">
+                <div class="map-search-container">
+                    <input type="text" id="map-search-input" placeholder="Arama yapın veya haritada tıklayın...">
+                </div>
+                <div id="map-modal-map" class="map-modal-map"></div>
+            </div>
+            <div class="map-modal-footer">
+                <button class="map-modal-btn cancel" onclick="closeMapModal()">İptal</button>
+                <button class="map-modal-btn confirm" onclick="confirmMapSelection()">Konumu Seç</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -859,265 +1126,10 @@
 
             <div class="footer-bottom">
                 <p>&copy; 2025 Jetla Kurye. Tüm Hakları Saklıdır.</p>
-                <div class="footer-links">
-                    <a href="#" onclick="openModal('kvkk'); return false;">KVKK Aydınlatma Metni</a>
-                    <a href="#" onclick="openModal('gizlilik'); return false;">Gizlilik Politikası</a>
-                    <a href="#" onclick="openModal('kullanim'); return false;">Kullanım Koşulları</a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <!-- Harita Modal (Kurye Çağır) -->
-    <div id="modal-kurye-cagir" class="modal">
-        <div class="modal-content kurye-modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-route"></i> Kurye Talebi Özeti</h2>
-                <span class="modal-close" onclick="closeKuryeModal()">&times;</span>
-            </div>
-            <div class="modal-body kurye-modal-body">
-                <div class="kurye-map-container">
-                    <div id="modal-map"></div>
-                </div>
-                <div class="kurye-info-panel">
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-map-marker-alt"></i> Başlangıç:</strong>
-                        <span id="modal-start-location">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-flag"></i> Bitiş:</strong>
-                        <span id="modal-end-location">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-route"></i> Gidilecek Yol:</strong>
-                        <span id="modal-route-path">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-ruler"></i> Mesafe:</strong>
-                        <span id="modal-distance">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-lira-sign"></i> Toplam Ücret:</strong>
-                        <span id="modal-price" class="price-highlight">-</span>
-                    </div>
-                </div>
-                <div class="kurye-modal-actions">
-                    <button type="button" class="kurye-confirm-btn" onclick="confirmKuryeCall()">
-                        <i class="fas fa-check"></i> Tamam
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kurye Yola Çıktı Mesajı Modal -->
-    <div id="modal-kurye-success" class="modal">
-        <div class="modal-content success-modal-content">
-            <div class="modal-header success-header">
-                <h2><i class="fas fa-check-circle"></i> Başarılı</h2>
-            </div>
-            <div class="modal-body success-modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-motorcycle"></i>
-                </div>
-                <h3>Kurye yola çıkmıştır!</h3>
-                <p>Kuryeniz en kısa sürede belirttiğiniz adrese ulaşacaktır.</p>
-                <button type="button" class="success-close-btn" onclick="closeSuccessModal()">
-                    <i class="fas fa-times"></i> Kapat
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- KVKK Modal -->
-    <div id="modal-kvkk" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>KVKK Aydınlatma Metni</h2>
-                <span class="modal-close" onclick="closeModal('kvkk')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <h3>1. VERİ SORUMLUSU</h3>
-                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kişisel verileriniz Jetla Kurye ("Şirket" veya "Biz") tarafından veri sorumlusu sıfatıyla işlenmektedir.</p>
-                
-                <h3>2. İŞLENEN KİŞİSEL VERİLER</h3>
-                <p>Şirketimiz tarafından işlenen kişisel verileriniz şunlardır:</p>
-                <ul>
-                    <li>Kimlik Bilgileri: Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet</li>
-                    <li>İletişim Bilgileri: Telefon numarası, e-posta adresi, adres bilgisi</li>
-                    <li>Mesleki Bilgiler: Ehliyet bilgisi, araç türü, tecrübe bilgisi</li>
-                    <li>Diğer Bilgiler: Adli sicil kaydı, şirket durumu</li>
-                </ul>
-                
-                <h3>3. KİŞİSEL VERİLERİN İŞLENME AMACI</h3>
-                <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
-                <ul>
-                    <li>Kurye başvurularının değerlendirilmesi</li>
-                    <li>İş süreçlerinin yürütülmesi</li>
-                    <li>Yasal yükümlülüklerin yerine getirilmesi</li>
-                    <li>İletişim faaliyetlerinin gerçekleştirilmesi</li>
-                </ul>
-                
-                <h3>4. KİŞİSEL VERİLERİN AKTARILMASI</h3>
-                <p>Kişisel verileriniz, yasal yükümlülüklerin yerine getirilmesi ve hizmet kalitesinin artırılması amacıyla, yasal düzenlemelerle sınırlı olmak kaydıyla, iş ortaklarımız ve hizmet sağlayıcılarımızla paylaşılabilir.</p>
-                
-                <h3>5. KİŞİSEL VERİLERİN SAKLANMA SÜRESİ</h3>
-                <p>Kişisel verileriniz, işlenme amacının gerektirdiği süre boyunca ve yasal saklama süreleri çerçevesinde saklanmaktadır.</p>
-                
-                <h3>6. HAKLARINIZ</h3>
-                <p>KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:</p>
-                <ul>
-                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
-                    <li>İşlenmişse buna ilişkin bilgi talep etme</li>
-                    <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
-                    <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
-                    <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
-                    <li>Silinmesini veya yok edilmesini isteme</li>
-                    <li>Düzeltme, silme, yok etme işlemlerinin, aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
-                    <li>Münhasıran otomatik sistemler ile analiz edilmesi nedeniyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
-                    <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
-                </ul>
-                
-                <h3>7. İLETİŞİM</h3>
-                <p>KVKK kapsamındaki haklarınızı kullanmak için <a href="mailto:jetlakurye.sosyal@gmail.com">jetlakurye.sosyal@gmail.com</a> adresine e-posta gönderebilir veya <a href="tel:+905449495008">0544 949 50 08</a> numaralı telefonu arayabilirsiniz.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gizlilik Politikası Modal -->
-    <div id="modal-gizlilik" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Gizlilik Politikası</h2>
-                <span class="modal-close" onclick="closeModal('gizlilik')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <h3>1. GENEL BİLGİLER</h3>
-                <p>Jetla Kurye olarak, kişisel verilerinizin korunmasına büyük önem vermekteyiz. Bu Gizlilik Politikası, kişisel verilerinizin nasıl toplandığı, kullanıldığı, saklandığı ve korunduğu hakkında bilgi vermektedir.</p>
-                
-                <h3>2. VERİ TOPLAMA</h3>
-                <p>Kişisel verileriniz, başvuru formları, iletişim formları ve diğer yasal yollarla toplanmaktadır.</p>
-                
-                <h3>3. VERİ KULLANIMI</h3>
-                <p>Toplanan kişisel veriler, hizmetlerimizin sunulması, iyileştirilmesi ve yasal yükümlülüklerimizin yerine getirilmesi amacıyla kullanılmaktadır.</p>
-                
-                <h3>4. VERİ GÜVENLİĞİ</h3>
-                <p>Kişisel verilerinizin güvenliği için teknik ve idari tedbirler alınmaktadır. Verileriniz, yetkisiz erişim, değiştirme, ifşa veya imhadan korunmaktadır.</p>
-                
-                <h3>5. ÇEREZLER</h3>
-                <p>Web sitemizde, kullanıcı deneyimini iyileştirmek amacıyla çerezler kullanılabilir. Çerez kullanımını tarayıcı ayarlarınızdan kontrol edebilirsiniz.</p>
-                
-                <h3>6. DEĞİŞİKLİKLER</h3>
-                <p>Bu Gizlilik Politikası, yasal düzenlemelerdeki değişiklikler veya iş süreçlerimizdeki güncellemeler nedeniyle değiştirilebilir. Değişiklikler web sitemizde yayınlanacaktır.</p>
-                
-                <h3>7. İLETİŞİM</h3>
-                <p>Gizlilik Politikamız hakkında sorularınız için <a href="mailto:jetlakurye.sosyal@gmail.com">jetlakurye.sosyal@gmail.com</a> adresine e-posta gönderebilir veya <a href="tel:+905449495008">0544 949 50 08</a> numaralı telefonu arayabilirsiniz.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kullanım Koşulları Modal -->
-    <div id="modal-kullanim" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Kullanım Koşulları</h2>
-                <span class="modal-close" onclick="closeModal('kullanim')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <h3>1. GENEL HÜKÜMLER</h3>
-                <p>Bu web sitesi Jetla Kurye tarafından işletilmektedir. Web sitesini kullanarak, aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız.</p>
-                
-                <h3>2. HİZMETLER</h3>
-                <p>Jetla Kurye, kurye ve kargo hizmetleri sunmaktadır. Hizmetlerimiz, mevcut yasal düzenlemelere ve sektör standartlarına uygun olarak sağlanmaktadır.</p>
-                
-                <h3>3. KULLANICI YÜKÜMLÜLÜKLERİ</h3>
-                <p>Web sitesini kullanırken:</p>
-                <ul>
-                    <li>Yasalara ve ahlaki kurallara uygun davranmalısınız</li>
-                    <li>Başkalarının haklarına saygı göstermelisiniz</li>
-                    <li>Yanlış veya yanıltıcı bilgi vermemelisiniz</li>
-                    <li>Web sitesinin güvenliğini tehdit edecek eylemlerde bulunmamalısınız</li>
-                </ul>
-                
-                <h3>4. FİKRİ MÜLKİYET HAKLARI</h3>
-                <p>Web sitesindeki tüm içerikler (metin, görsel, logo vb.) Jetla Kurye'nin fikri mülkiyetidir ve telif haklarıyla korunmaktadır.</p>
-                
-                <h3>5. SORUMLULUK SINIRLAMASI</h3>
-                <p>Web sitesi "olduğu gibi" sunulmaktadır. Jetla Kurye, web sitesinin kesintisiz veya hatasız çalışacağını garanti etmemektedir.</p>
-                
-                <h3>6. DEĞİŞİKLİKLER</h3>
-                <p>Bu Kullanım Koşulları, önceden haber verilmeksizin değiştirilebilir. Değişiklikler web sitemizde yayınlanacaktır.</p>
-                
-                <h3>7. UYGULANACAK HUKUK</h3>
-                <p>Bu Kullanım Koşulları, Türkiye Cumhuriyeti yasalarına tabidir.</p>
-                
-                <h3>8. İLETİŞİM</h3>
-                <p>Kullanım Koşulları hakkında sorularınız için <a href="mailto:jetlakurye.sosyal@gmail.com">jetlakurye.sosyal@gmail.com</a> adresine e-posta gönderebilir veya <a href="tel:+905449495008">0544 949 50 08</a> numaralı telefonu arayabilirsiniz.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Harita Modal (Kurye Çağır) -->
-    <div id="modal-kurye-cagir" class="modal">
-        <div class="modal-content kurye-modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-route"></i> Kurye Talebi Özeti</h2>
-                <span class="modal-close" onclick="closeKuryeModal()">&times;</span>
-            </div>
-            <div class="modal-body kurye-modal-body">
-                <div class="kurye-map-container">
-                    <div id="modal-map"></div>
-                </div>
-                <div class="kurye-info-panel">
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-map-marker-alt"></i> Başlangıç:</strong>
-                        <span id="modal-start-location">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-flag"></i> Bitiş:</strong>
-                        <span id="modal-end-location">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-route"></i> Gidilecek Yol:</strong>
-                        <span id="modal-route-path">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-ruler"></i> Mesafe:</strong>
-                        <span id="modal-distance">-</span>
-                    </div>
-                    <div class="kurye-info-item">
-                        <strong><i class="fas fa-lira-sign"></i> Toplam Ücret:</strong>
-                        <span id="modal-price" class="price-highlight">-</span>
-                    </div>
-                </div>
-                <div class="kurye-modal-actions">
-                    <button type="button" class="kurye-confirm-btn" onclick="confirmKuryeCall()">
-                        <i class="fas fa-check"></i> Tamam
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kurye Yola Çıktı Mesajı Modal -->
-    <div id="modal-kurye-success" class="modal">
-        <div class="modal-content success-modal-content">
-            <div class="modal-header success-header">
-                <h2><i class="fas fa-check-circle"></i> Başarılı</h2>
-            </div>
-            <div class="modal-body success-modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-motorcycle"></i>
-                </div>
-                <h3>Kurye yola çıkmıştır!</h3>
-                <p>Kuryeniz en kısa sürede belirttiğiniz adrese ulaşacaktır.</p>
-                <button type="button" class="success-close-btn" onclick="closeSuccessModal()">
-                    <i class="fas fa-times"></i> Kapat
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script>
         let map;
@@ -1129,6 +1141,14 @@
         let endLocation = null;
         let routeDistance = 0; // km cinsinden
         let routeDuration = 0; // dakika cinsinden
+        
+        // Map Modal Variables
+        let mapModalMap = null;
+        let mapModalMarker = null;
+        let mapModalAutocomplete = null;
+        let mapModalSelectedLocation = null;
+        let mapModalSelectedAddress = null;
+        let mapModalType = null; // 'start' or 'end'
 
         // Initialize Map
         function initMap() {
@@ -1158,7 +1178,6 @@
             // Location buttons
             const startBtn = document.getElementById('get-start-location');
             const endBtn = document.getElementById('get-end-location');
-            const weightInput = document.getElementById('weight');
             const callBtn = document.getElementById('call-kurye-btn');
 
             if (startBtn && !startBtn.hasAttribute('data-listener-added')) {
@@ -1179,13 +1198,25 @@
                 });
             }
 
-            if (weightInput && !weightInput.hasAttribute('data-listener-added')) {
-                weightInput.setAttribute('data-listener-added', 'true');
-                weightInput.addEventListener('input', function() {
-                    updateWeightDisplay();
-                    if (routeDistance > 0) {
-                        calculatePrice();
-                    }
+            // Haritada Seç butonları
+            const mapSelectStartBtn = document.getElementById('map-select-start');
+            const mapSelectEndBtn = document.getElementById('map-select-end');
+
+            if (mapSelectStartBtn && !mapSelectStartBtn.hasAttribute('data-listener-added')) {
+                mapSelectStartBtn.setAttribute('data-listener-added', 'true');
+                mapSelectStartBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Başlangıç haritada seç butonu tıklandı');
+                    openMapModal('start');
+                });
+            }
+
+            if (mapSelectEndBtn && !mapSelectEndBtn.hasAttribute('data-listener-added')) {
+                mapSelectEndBtn.setAttribute('data-listener-added', 'true');
+                mapSelectEndBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Bitiş haritada seç butonu tıklandı');
+                    openMapModal('end');
                 });
             }
 
@@ -1194,6 +1225,15 @@
                 callBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     console.log('Jetla Kurye Çağır butonu tıklandı');
+                    
+                    // Önce fiyatı hesapla
+                    const totalPrice = calculatePrice();
+                    
+                    // Eğer fiyat hesaplanamadıysa (hata durumu) işlemi durdur
+                    if (!totalPrice) {
+                        return;
+                    }
+                    
                     const startLoc = document.getElementById('start-location').value;
                     const endLoc = document.getElementById('end-location').value;
                     const weight = document.getElementById('weight').value;
@@ -1201,9 +1241,195 @@
                     const duration = document.getElementById('route-duration').textContent;
                     const price = document.getElementById('route-price').textContent;
 
-                    // Modal'ı aç ve bilgileri göster
-                    openKuryeModal();
+                    // WhatsApp mesajı oluştur
+                    const message = `🚚 *Jetla Express - Kurye Talebi*\n\n` +
+                        `📍 *Başlangıç:* ${startLoc}\n` +
+                        `🎯 *Bitiş:* ${endLoc}\n` +
+                        `📦 *Ağırlık:* ${weight} kg\n` +
+                        `📏 *Mesafe:* ${distance}\n` +
+                        `⏱️ *Süre:* ${duration}\n` +
+                        `💰 *Tahmini Fiyat:* ${price}\n\n` +
+                        `Lütfen bu gönderi için kurye gönderin.`;
+
+                    const phoneNumber = '905449495008';
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                    
+                    window.open(whatsappUrl, '_blank');
                 });
+            }
+            
+            // Ağırlık input için event listener
+            const weightInput = document.getElementById('weight');
+            if (weightInput && !weightInput.hasAttribute('data-listener-added')) {
+                weightInput.setAttribute('data-listener-added', 'true');
+                weightInput.addEventListener('input', function() {
+                    // Maksimum ağırlık kontrolü
+                    if (parseFloat(this.value) > 20) {
+                        this.value = 20;
+                        alert('Maksimum ağırlık 20 kg\'dır.');
+                    }
+                    updateWeightDisplay();
+                });
+            }
+        }
+
+        // Map Modal Functions
+        function openMapModal(type) {
+            mapModalType = type;
+            const modal = document.getElementById('map-modal');
+            modal.classList.add('active');
+            
+            // Modal haritasını başlat (eğer henüz başlatılmadıysa)
+            if (!mapModalMap) {
+                initMapModal();
+            } else {
+                // Mevcut konumu göster (eğer varsa)
+                if (type === 'start' && startLocation) {
+                    mapModalMap.setCenter(startLocation);
+                    mapModalMarker.setPosition(startLocation);
+                } else if (type === 'end' && endLocation) {
+                    mapModalMap.setCenter(endLocation);
+                    mapModalMarker.setPosition(endLocation);
+                }
+            }
+        }
+
+        function closeMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.remove('active');
+            mapModalSelectedLocation = null;
+            mapModalSelectedAddress = null;
+        }
+
+        function initMapModal() {
+            const defaultCenter = { lat: 36.8969, lng: 30.7133 };
+            
+            mapModalMap = new google.maps.Map(document.getElementById('map-modal-map'), {
+                zoom: 13,
+                center: defaultCenter,
+                mapTypeControl: true,
+                streetViewControl: true,
+                fullscreenControl: true
+            });
+
+            // Marker oluştur
+            mapModalMarker = new google.maps.Marker({
+                map: mapModalMap,
+                draggable: true,
+                animation: google.maps.Animation.DROP
+            });
+
+            // Haritada tıklama eventi
+            mapModalMap.addListener('click', function(event) {
+                const clickedLocation = {
+                    lat: event.latLng.lat(),
+                    lng: event.latLng.lng()
+                };
+                setMapModalLocation(clickedLocation);
+            });
+
+            // Marker sürükleme eventi
+            mapModalMarker.addListener('dragend', function(event) {
+                const draggedLocation = {
+                    lat: event.latLng.lat(),
+                    lng: event.latLng.lng()
+                };
+                setMapModalLocation(draggedLocation);
+            });
+
+            // Autocomplete için input
+            const searchInput = document.getElementById('map-search-input');
+            mapModalAutocomplete = new google.maps.places.Autocomplete(searchInput, {
+                componentRestrictions: { country: 'tr' },
+                fields: ['geometry', 'formatted_address', 'name']
+            });
+
+            // Autocomplete seçildiğinde
+            mapModalAutocomplete.addListener('place_changed', function() {
+                const place = mapModalAutocomplete.getPlace();
+                if (place.geometry) {
+                    const selectedLocation = {
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    };
+                    setMapModalLocation(selectedLocation, place.formatted_address || place.name);
+                }
+            });
+        }
+
+        function setMapModalLocation(location, address = null) {
+            mapModalSelectedLocation = location;
+            mapModalMarker.setPosition(location);
+            mapModalMap.setCenter(location);
+            mapModalMap.setZoom(15);
+
+            // Adres yoksa reverse geocoding yap
+            if (!address) {
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: location }, function(results, status) {
+                    if (status === 'OK' && results[0]) {
+                        mapModalSelectedAddress = results[0].formatted_address;
+                        document.getElementById('map-search-input').value = results[0].formatted_address;
+                    }
+                });
+            } else {
+                mapModalSelectedAddress = address;
+                document.getElementById('map-search-input').value = address;
+            }
+        }
+
+        function confirmMapSelection() {
+            if (!mapModalSelectedLocation) {
+                alert('Lütfen haritada bir konum seçin veya arama yapın.');
+                return;
+            }
+
+            const address = mapModalSelectedAddress || 'Seçilen Konum';
+            
+            if (mapModalType === 'start') {
+                startLocation = mapModalSelectedLocation;
+                document.getElementById('start-location').value = address;
+                
+                // Marker'ı ana haritaya ekle
+                if (startMarker) {
+                    startMarker.setMap(null);
+                }
+                startMarker = new google.maps.Marker({
+                    position: startLocation,
+                    map: map,
+                    label: 'A',
+                    title: 'Başlangıç Noktası'
+                });
+            } else if (mapModalType === 'end') {
+                endLocation = mapModalSelectedLocation;
+                document.getElementById('end-location').value = address;
+                
+                // Marker'ı ana haritaya ekle
+                if (endMarker) {
+                    endMarker.setMap(null);
+                }
+                endMarker = new google.maps.Marker({
+                    position: endLocation,
+                    map: map,
+                    label: 'B',
+                    title: 'Bitiş Noktası'
+                });
+            }
+
+            // Eğer her iki konum da seçildiyse rotayı hesapla
+            if (startLocation && endLocation) {
+                calculateRoute();
+            }
+
+            closeMapModal();
+        }
+
+        // Modal dışına tıklandığında kapat
+        window.onclick = function(event) {
+            const modal = document.getElementById('map-modal');
+            if (event.target === modal) {
+                closeMapModal();
             }
         }
 
@@ -1211,6 +1437,35 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM yüklendi, event listener\'lar kuruluyor...');
             setupEventListeners();
+            
+            // Hamburger menü fonksiyonalitesi
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('header nav');
+            const navLinks = document.querySelectorAll('header nav ul li a');
+
+            if (hamburger && nav) {
+                // Hamburger menüyü aç/kapat
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Menü linklerine tıklandığında menüyü kapat
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+
+                // Menü dışına tıklandığında menüyü kapat
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    }
+                });
+            }
         });
 
         // Select Location from Address Input
@@ -1316,10 +1571,6 @@
                     document.getElementById('route-duration').textContent = leg.duration.text;
                     document.getElementById('route-info').classList.add('active');
                     
-                    // Ağırlık ve fiyatı hesapla
-                    updateWeightDisplay();
-                    calculatePrice();
-                    
                     // Fit bounds to show entire route
                     const bounds = new google.maps.LatLngBounds();
                     bounds.extend(startLocation);
@@ -1333,7 +1584,16 @@
 
         // Update Weight Display
         function updateWeightDisplay() {
-            const weight = parseFloat(document.getElementById('weight').value) || 0;
+            const weightInput = document.getElementById('weight');
+            let weight = parseFloat(weightInput.value) || 0;
+            
+            // Maksimum ağırlık kontrolü
+            if (weight > 20) {
+                weightInput.value = 20;
+                weight = 20;
+                alert('Maksimum ağırlık 20 kg\'dır.');
+            }
+            
             document.getElementById('route-weight').textContent = weight.toFixed(1) + ' kg';
         }
 
@@ -1341,186 +1601,60 @@
         function calculatePrice() {
             const weight = parseFloat(document.getElementById('weight').value) || 0;
             
-            if (routeDistance === 0 || weight === 0) {
-                document.getElementById('route-price').textContent = '-';
-                document.getElementById('call-kurye-btn').classList.remove('active');
+            // Maksimum ağırlık kontrolü
+            if (weight > 20) {
+                alert('Maksimum ağırlık 20 kg\'dır. Lütfen geçerli bir ağırlık giriniz.');
+                document.getElementById('weight').value = 20;
+                return;
+            }
+            
+            if (routeDistance === 0) {
+                alert('Lütfen önce başlangıç ve bitiş konumlarını seçiniz.');
+                return;
+            }
+
+            if (weight === 0) {
+                alert('Lütfen paket ağırlığını giriniz.');
                 return;
             }
 
             // Fiyat hesaplama formülü
-            // Temel ücret: 60 TL
-            // Mesafe başına: 5 TL/km
-            // Ağırlık başına: 1 TL/kg (5 kg üzeri için)
-            // Süre faktörü: Dakika başına 0.5 TL (30 dakika üzeri için)
+            // Temel ücret: 80 TL (Paket başına)
+            // Mesafe başına: 16 TL/km
+            // Ağırlık ücreti: Her 5 kg için +50 TL (5 kg üzeri için)
+            // Maksimum ağırlık: 20 kg
 
-            let basePrice = 60; // Temel ücret
-            let distancePrice = routeDistance * 5; // Mesafe ücreti
-            let weightPrice = weight > 5 ? (weight - 5) * 1 : 0; // Ağırlık ücreti (5 kg üzeri)
-            let timePrice = routeDuration > 30 ? (routeDuration - 30) * 0.5 : 0; // Süre ücreti (30 dk üzeri)
+            let basePrice = 80; // Temel ücret (Paket başına)
+            let distancePrice = routeDistance * 16; // Mesafe ücreti (16 TL/km)
+            
+            // Ağırlık ücreti: Her 5 kg için +50 TL (5 kg üzeri için)
+            let weightPrice = 0;
+            if (weight > 5) {
+                const extraWeight = weight - 5; // 5 kg üzeri ağırlık
+                const weightMultiplier = Math.floor(extraWeight / 5); // Her 5 kg için
+                weightPrice = weightMultiplier * 50; // Her 5 kg için +50 TL
+            }
 
-            let totalPrice = basePrice + distancePrice + weightPrice + timePrice;
+            let totalPrice = basePrice + distancePrice + weightPrice;
 
             // Minimum fiyat kontrolü
-            if (totalPrice < 60) {
-                totalPrice = 60;
+            if (totalPrice < 80) {
+                totalPrice = 80;
             }
 
             // Fiyatı göster
             document.getElementById('route-price').textContent = totalPrice.toFixed(2) + ' ₺';
             
-            // Butonu göster
-            document.getElementById('call-kurye-btn').classList.add('active');
+            // Ağırlık gösterimini güncelle
+            updateWeightDisplay();
+            
+            return totalPrice;
         }
 
 
         // Fallback if Google Maps API fails to load
         window.initMap = initMap;
 
-        // Modal Fonksiyonları
-        function openModal(modalType) {
-            const modalId = 'modal-' + modalType;
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı engelle
-            }
-        }
-
-        function closeModal(modalType) {
-            const modalId = 'modal-' + modalType;
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Sayfa kaydırmayı tekrar etkinleştir
-            }
-        }
-
-        // Modal dışına tıklandığında kapat
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // ESC tuşu ile modal kapat
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const activeModals = document.querySelectorAll('.modal.active');
-                activeModals.forEach(modal => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-        });
-
-        // Kurye Çağır Modal Fonksiyonları
-        let modalMap = null;
-        let modalDirectionsRenderer = null;
-
-        function openKuryeModal() {
-            const startLoc = document.getElementById('start-location').value;
-            const endLoc = document.getElementById('end-location').value;
-            const distance = document.getElementById('route-distance').textContent;
-            const price = document.getElementById('route-price').textContent;
-
-            // Modal içindeki bilgileri doldur
-            document.getElementById('modal-start-location').textContent = startLoc || '-';
-            document.getElementById('modal-end-location').textContent = endLoc || '-';
-            document.getElementById('modal-distance').textContent = distance || '-';
-            document.getElementById('modal-price').textContent = price || '-';
-            
-            // Gidilecek yol bilgisini oluştur
-            if (startLocation && endLocation) {
-                const routePath = `${startLoc} → ${endLoc}`;
-                document.getElementById('modal-route-path').textContent = routePath;
-            } else {
-                document.getElementById('modal-route-path').textContent = '-';
-            }
-
-            // Modal'ı aç
-            const modal = document.getElementById('modal-kurye-cagir');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            // Modal haritasını başlat
-            setTimeout(() => {
-                initModalMap();
-            }, 100);
-        }
-
-        function initModalMap() {
-            if (!startLocation || !endLocation) return;
-
-            const mapContainer = document.getElementById('modal-map');
-            if (!mapContainer) return;
-
-            // Modal haritasını oluştur
-            modalMap = new google.maps.Map(mapContainer, {
-                zoom: 13,
-                center: startLocation,
-                mapTypeControl: true,
-                streetViewControl: true,
-                fullscreenControl: true
-            });
-
-            modalDirectionsRenderer = new google.maps.DirectionsRenderer({
-                map: modalMap,
-                suppressMarkers: false
-            });
-
-            // Rota çiz
-            const request = {
-                origin: startLocation,
-                destination: endLocation,
-                travelMode: google.maps.TravelMode.DRIVING,
-                unitSystem: google.maps.UnitSystem.METRIC
-            };
-
-            directionsService.route(request, function(result, status) {
-                if (status === 'OK') {
-                    modalDirectionsRenderer.setDirections(result);
-                    
-                    // Haritayı rotaya göre ayarla
-                    const bounds = new google.maps.LatLngBounds();
-                    bounds.extend(startLocation);
-                    bounds.extend(endLocation);
-                    modalMap.fitBounds(bounds);
-                }
-            });
-        }
-
-        function closeKuryeModal() {
-            const modal = document.getElementById('modal-kurye-cagir');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // Modal haritasını temizle
-            if (modalMap) {
-                modalMap = null;
-            }
-            if (modalDirectionsRenderer) {
-                modalDirectionsRenderer.setMap(null);
-                modalDirectionsRenderer = null;
-            }
-        }
-
-        function confirmKuryeCall() {
-            // Kurye çağır modalını kapat
-            closeKuryeModal();
-            
-            // Başarı mesajı modalını aç
-            setTimeout(() => {
-                const successModal = document.getElementById('modal-kurye-success');
-                successModal.classList.add('active');
-            }, 300);
-        }
-
-        function closeSuccessModal() {
-            const modal = document.getElementById('modal-kurye-success');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 
