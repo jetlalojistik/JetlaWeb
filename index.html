@@ -154,35 +154,57 @@
             color: #FEF3C7;
         }
 
-        /* Ana Header */
+        /* Header */
         header {
             background-color: var(--secondary-white);
-            color: var(--text-dark);
-            padding: 6px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px var(--shadow-light);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 1px 3px var(--shadow-light);
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        header .logo {
-            flex-shrink: 0;
-            margin-right: 20px;
+        nav ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        header .logo img {
-            max-width: 150px;
-            height: auto;
-            display: block;
+        nav ul li a:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+        }
+        
+        /* Jetla Express linkini kırmızı yap */
+        nav ul li a[href="express.html"] {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        nav ul li a[href="express.html"]:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
         }
 
         /* Hamburger menü butonu */
@@ -215,69 +237,6 @@
 
         .hamburger.active span:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        header nav {
-            flex-grow: 1;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        header nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            flex-grow: 1;
-        }
-
-        header nav ul li {
-            margin: 0 15px;
-        }
-
-        header nav ul li a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 6px;
-            position: relative;
-        }
-        
-        /* Jetla Express linkini kırmızı yap */
-        header nav ul li a[href="express.html"] {
-            color: var(--primary-red);
-            font-weight: 600;
-        }
-        
-        header nav ul li a[href="express.html"]:hover {
-            background-color: var(--primary-red);
-            color: var(--secondary-white);
-        }
-
-        header nav ul li a:hover {
-            color: var(--primary-red);
-            background-color: var(--light-gray);
-        }
-
-        header nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: var(--primary-red);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        header nav ul li a:hover::after {
-            width: 80%;
         }
 
         /* Kahraman Bölümü (Hero Section) - En üstteki büyük görsel alan */
@@ -1399,42 +1358,37 @@
 
         /* Duyarlı Tasarım (Responsive Design) - Farklı Ekran Boyutları İçin Ayarlamalar */
         @media (max-width: 768px) {
+            /* Header Mobil */
             header {
-                padding: 5px 0;
-            }
-
-            .top-bar {
-                display: none;
+                padding: 10px 0;
             }
 
             header .container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+                position: relative;
             }
 
-            header .logo {
-                margin-right: 0;
-            }
-
-            header .logo img {
-                max-width: 120px;
+            .logo img {
+                height: 60px;
             }
 
             .hamburger {
                 display: flex;
+                order: 2;
             }
 
             header nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 250px;
+                width: 80%;
+                max-width: 300px;
                 height: 100vh;
-                background-color: var(--background-white);
+                background-color: var(--secondary-white);
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
                 transition: right 0.3s ease;
                 z-index: 1000;
-                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                padding-top: 80px;
+                overflow-y: auto;
             }
 
             header nav.active {
@@ -1443,23 +1397,27 @@
 
             header nav ul {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 80px 20px 20px 20px;
-                margin: 0;
-                height: 100%;
-                justify-content: flex-start;
+                gap: 0;
+                padding: 20px;
             }
 
             header nav ul li {
-                margin: 15px 0;
+                margin: 0;
                 width: 100%;
+                border-bottom: 1px solid var(--border-color);
             }
 
             header nav ul li a {
                 display: block;
-                padding: 10px 0;
-                font-size: 1.2em;
-                border-bottom: 1px solid var(--light-gray);
+                padding: 15px 20px;
+                width: 100%;
+                text-align: left;
+                font-size: 1.1em;
+            }
+
+            header nav ul li a:hover {
+                background-color: var(--light-gray);
+                color: var(--primary-red);
             }
 
             .hero-section {
@@ -1939,12 +1897,17 @@
         </div>
     </div>
 
-    <!-- Ana Header -->
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="logo">
-                <img src="jet.svg" alt="Jetla Kurye Logo" width="100" height="100">
+                <img src="jet.svg" alt="Jetla Kurye Logo">
             </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav>
                 <ul>
                     <li><a href="index.html">Anasayfa</a></li>
@@ -1952,14 +1915,10 @@
                     <li><a href="kurye-basvuru.html">Kurye Başvuru</a></li>
                     <li><a href="isletme-basvuru.html">İşletme Başvuru</a></li>
                     <li><a href="express.html">Jetla Express</a></li>
+                    <li><a href="antalya.html">Antalya</a></li>
                     <li><a href="index.html#contact">İletişim</a></li>
                 </ul>
             </nav>
-            <button class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
@@ -2308,6 +2267,8 @@
                     <p><a href="index.html#services"><i class="fas fa-briefcase"></i> Hizmetlerimiz</a></p>
                     <p><a href="kurye-basvuru.html"><i class="fas fa-user-tie"></i> Kurye Başvuru</a></p>
                     <p><a href="isletme-basvuru.html"><i class="fas fa-building"></i> İşletme Başvuru</a></p>
+                    <p><a href="express.html"><i class="fas fa-shipping-fast"></i> Jetla Express</a></p>
+                    <p><a href="antalya.html"><i class="fas fa-map-marked-alt"></i> Antalya</a></p>
                     <p><a href="index.html#contact"><i class="fas fa-envelope"></i> İletişim</a></p>
                 </div>
 

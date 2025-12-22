@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antalya Bölgeleri - Jetla Kurye</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Antalya'nın tüm bölgelerinde kurye hizmeti. Konyaaltı, Kültür, Varsak, Lara ve daha fazlası. Jetla Kurye ile Antalya'nın her yerine hızlı teslimat.">
+    <meta name="keywords" content="Antalya kurye, Konyaaltı kurye, Kültür kurye, Varsak kurye, Lara kurye, Antalya bölgeleri">
+    <meta name="author" content="Jetla Kurye">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jetlakurye.com/antalya.html">
+    <meta property="og:title" content="Antalya Bölgeleri - Jetla Kurye">
+    <meta property="og:description" content="Antalya'nın tüm bölgelerinde kurye hizmeti. Konyaaltı, Kültür, Varsak, Lara ve daha fazlası.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="jet.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-red: #DC2626;
+            --primary-red-dark: #B91C1C;
+            --secondary-white: #FFFFFF;
+            --background-white: #FAFAFA;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --light-gray: #F3F4F6;
+            --border-color: #D1D5DB;
+            --accent-blue: #3B82F6;
+            --accent-green: #10B981;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+            padding: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a {
+            color: var(--secondary-white);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+        }
+        
+        /* Antalya linkini kırmızı yap */
+        nav ul li a[href="antalya.html"] {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        nav ul li a[href="antalya.html"]:hover {
+            background-color: var(--primary-red);
+            color: var(--secondary-white);
+        }
+
+        /* Hamburger menü butonu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            color: var(--secondary-white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Regions Section */
+        .regions-section {
+            padding: 60px 20px;
+            background-color: var(--secondary-white);
+        }
+
+        .regions-section h2 {
+            color: var(--primary-red);
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .region-card {
+            background-color: var(--secondary-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .region-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.2);
+        }
+
+        .region-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-white);
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .region-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .region-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(185, 28, 28, 0.3) 100%);
+            pointer-events: none;
+        }
+
+        /* Görsel varsa overlay'i daha hafif yap */
+        .region-image:has(img)::after {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(185, 28, 28, 0.2) 100%);
+        }
+
+        .region-content {
+            padding: 25px;
+        }
+
+        .region-content h3 {
+            color: var(--primary-red);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .region-content p {
+            color: var(--text-light);
+            font-size: 1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .region-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-red);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .region-link:hover {
+            gap: 12px;
+            color: var(--primary-red-dark);
+        }
+
+
+        /* Info Section */
+        .info-section {
+            padding: 60px 20px;
+            background-color: var(--secondary-white);
+        }
+
+        .info-section h2 {
+            color: var(--primary-red);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            color: var(--text-light);
+            max-width: 900px;
+            margin: 0 auto 20px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--secondary-white);
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-red);
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-red), transparent);
+        }
+
+        .footer-section p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        .footer-section a {
+            color: var(--secondary-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-red);
+            transform: translateX(5px);
+        }
+
+        .footer-section i {
+            margin-right: 8px;
+            color: var(--primary-red);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.3em;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .social-links a i {
+            margin: 0;
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9em;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* Top Bar Mobil */
+            .top-bar {
+                padding: 8px 0;
+                font-size: 0.8em;
+            }
+
+            .top-bar-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .top-bar a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            /* Header Mobil */
+            header {
+                padding: 10px 0;
+            }
+
+            header .container {
+                position: relative;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+
+            header nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--secondary-white);
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+                padding-top: 80px;
+                overflow-y: auto;
+            }
+
+            header nav.active {
+                right: 0;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            header nav ul li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            header         nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+            header nav ul li a:hover {
+                background-color: var(--light-gray);
+                color: var(--primary-red);
+            }
+
+            /* Hero Section Mobil */
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 2em;
+            }
+
+            .hero-section p {
+                font-size: 1.1em;
+            }
+
+            /* Regions Section Mobil */
+            .regions-section {
+                padding: 40px 20px;
+            }
+
+            .regions-section h2 {
+                font-size: 2em;
+            }
+
+            .regions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .region-image {
+                height: 200px;
+                font-size: 3em;
+            }
+
+            .region-content h3 {
+                font-size: 1.5em;
+            }
+
+
+            /* Info Section Mobil */
+            .info-section {
+                padding: 40px 20px;
+            }
+
+            .info-section h2 {
+                font-size: 2em;
+            }
+
+            .info-section p {
+                font-size: 1em;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div>
+                <i class="fas fa-phone"></i> <a href="tel:+905449495008">0544 949 50 08</a>
+                <i class="fas fa-envelope"></i> <a href="mailto:jetlakurye.sosyal@gmail.com">jetlakurye.sosyal@gmail.com</a>
+            </div>
+            <div>
+                <a href="https://wa.me/905449495008" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="jet.svg" alt="Jetla Kurye Logo">
+            </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="index.html#services">Hizmetlerimiz</a></li>
+                    <li><a href="kurye-basvuru.html">Kurye Başvuru</a></li>
+                    <li><a href="isletme-basvuru.html">İşletme Başvuru</a></li>
+                    <li><a href="express.html">Jetla Express</a></li>
+                    <li><a href="antalya.html">Antalya</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1><i class="fas fa-map-marked-alt"></i> Antalya Bölgeleri</h1>
+            <p>Antalya'nın tüm bölgelerinde hızlı ve güvenilir kurye hizmeti</p>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <h2>Antalya'da Hizmet Verdiğimiz Bölgeler</h2>
+            <p>
+                Jetla Kurye olarak Antalya'nın tüm bölgelerinde hızlı ve güvenilir kurye hizmeti sunuyoruz. 
+                Konyaaltı'dan Lara'ya, Kültür'den Varsak'a kadar Antalya'nın her noktasına gönderilerinizi 
+                eksiksiz ve zamanında teslim ediyoruz.
+            </p>
+            <p>
+                Bölgelerimiz hakkında detaylı bilgi almak için aşağıdaki bölge kartlarına göz atabilirsiniz.
+            </p>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section class="regions-section">
+        <div class="container">
+            <h2>Hizmet Bölgelerimiz</h2>
+            <div class="regions-grid">
+                <!-- Konyaaltı -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <img src="konyaalti.png" alt="Konyaaltı" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-map-marker-alt\'></i>';">
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Konyaaltı</h3>
+                        <p>
+                            Konyaaltı bölgesinde hızlı ve güvenilir kurye hizmeti. Sahil şeridinden iç kesimlere 
+                            kadar tüm Konyaaltı bölgesine teslimat yapıyoruz.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kültür -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <img src="kultur.png" alt="Kültür" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-map-marker-alt\'></i>';">
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Kültür</h3>
+                        <p>
+                            Kültür bölgesinde profesyonel kurye hizmeti. Merkezi konumu sayesinde hızlı 
+                            teslimat imkanı sunuyoruz.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Varsak -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <img src="varsak.png" alt="Varsak" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-map-marker-alt\'></i>';">
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Varsak</h3>
+                        <p>
+                            Varsak bölgesinde güvenilir kurye hizmeti. Tüm mahalle ve sokaklara 
+                            eksiksiz teslimat garantisi.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Lara -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <img src="Lara.png" alt="Lara" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-map-marker-alt\'></i>';">
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Lara</h3>
+                        <p>
+                            Lara bölgesinde hızlı teslimat hizmeti. Sahil bölgesinden otellere, 
+                            sitelerden işyerlerine kadar geniş kapsamlı hizmet.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kepez -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <img src="Kepez.png" alt="Kepez" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-map-marker-alt\'></i>';">
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Kepez</h3>
+                        <p>
+                            Kepez bölgesinde profesyonel kurye hizmeti. Geniş hizmet ağımız ile 
+                            tüm mahallelere hızlı teslimat.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Muratpaşa -->
+                <div class="region-card">
+                    <div class="region-image">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="region-content">
+                        <h3><i class="fas fa-location-dot"></i> Muratpaşa</h3>
+                        <p>
+                            Muratpaşa bölgesinde güvenilir kurye hizmeti. Merkezi konumu ile 
+                            hızlı ve zamanında teslimat garantisi.
+                        </p>
+                        <a href="express.html" class="region-link">
+                            Hemen Sipariş Ver <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Hakkımızda Bölümü -->
+                <div class="footer-section">
+                    <h3>Hakkımızda</h3>
+                    <p>Jetla Kurye olarak Antalya merkezli, hızlı ve güvenilir kurye hizmetleri sunmaktayız. Müşteri memnuniyetini ön planda tutarak, gönderilerinizi en kısa sürede ve eksiksiz bir şekilde yerine ulaştırmayı taahhüt ediyoruz.</p>
+                </div>
+
+                <!-- İletişim Bölümü -->
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Antalya, Türkiye</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+905449495008">0544 949 50 08</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:jetlakurye.sosyal@gmail.com">jetlakurye.sosyal@gmail.com</a></p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905449495008" target="_blank">WhatsApp</a></p>
+                </div>
+
+                <!-- Hızlı Linkler -->
+                <div class="footer-section">
+                    <h3>Hızlı Linkler</h3>
+                    <p><a href="index.html"><i class="fas fa-home"></i> Anasayfa</a></p>
+                    <p><a href="index.html#services"><i class="fas fa-briefcase"></i> Hizmetlerimiz</a></p>
+                    <p><a href="kurye-basvuru.html"><i class="fas fa-user-tie"></i> Kurye Başvuru</a></p>
+                    <p><a href="isletme-basvuru.html"><i class="fas fa-building"></i> İşletme Başvuru</a></p>
+                    <p><a href="express.html"><i class="fas fa-shipping-fast"></i> Jetla Express</a></p>
+                    <p><a href="antalya.html"><i class="fas fa-map-marked-alt"></i> Antalya</a></p>
+                    <p><a href="index.html#contact"><i class="fas fa-envelope"></i> İletişim</a></p>
+                </div>
+
+                <!-- Sosyal Medya -->
+                <div class="footer-section">
+                    <h3>Sosyal Medya</h3>
+                    <p>Bizi sosyal medyada takip edin ve güncel haberlerden haberdar olun.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/905449495008" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/jetla_kurye?igsh=MXRjZHc5cTdmaGdqdg==" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1B43mHSLpS/" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jetla Kurye. Tüm Hakları Saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menü fonksiyonalitesi
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('header nav');
+            const navLinks = document.querySelectorAll('header nav ul li a');
+
+            if (hamburger && nav) {
+                // Hamburger menüyü aç/kapat
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                });
+
+                // Menü linklerine tıklandığında menüyü kapat
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    });
+                });
+
+                // Menü dışına tıklandığında menüyü kapat
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+
