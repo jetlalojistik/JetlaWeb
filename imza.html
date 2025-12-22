@@ -224,9 +224,10 @@
         #signatureCanvas {
             display: block;
             width: 100%;
-            height: 220px;
+            height: 300px;
             touch-action: none;
             cursor: crosshair;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .success-screen {
@@ -285,17 +286,135 @@
             font-size: 0.75rem;
         }
 
-        @media (max-width: 480px) {
+        /* Mobil First - Responsive Tasarım */
+        @media (max-width: 768px) {
             .container {
                 padding: 15px;
+                max-width: 100%;
             }
 
             .card {
-                padding: 20px;
+                padding: 20px 16px;
+                margin-bottom: 15px;
+            }
+
+            .header {
+                padding: 12px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1rem;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            select,
+            textarea {
+                padding: 14px 16px;
+                font-size: 16px; /* iOS zoom önleme */
+            }
+
+            .btn {
+                padding: 16px 24px;
+                font-size: 1rem;
+                min-height: 48px; /* Büyük dokunma alanı */
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-group .btn {
+                width: 100%;
             }
 
             #signatureCanvas {
-                height: 200px;
+                height: 350px; /* Mobilde daha büyük */
+            }
+
+            .signature-canvas-container {
+                margin-top: 10px;
+            }
+
+            .success-preview {
+                padding: 14px;
+            }
+
+            .success-preview-item {
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+            }
+
+            .success-preview-item strong {
+                min-width: 90px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 18px 14px;
+            }
+
+            .header {
+                padding: 10px 12px;
+            }
+
+            .header h1 {
+                font-size: 1rem;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            select,
+            textarea {
+                padding: 12px 14px;
+            }
+
+            #signatureCanvas {
+                height: 400px; /* Küçük ekranlarda maksimum yükseklik */
+            }
+
+            .pin-input {
+                font-size: 1.3rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .success-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #signatureCanvas {
+                height: 350px;
+            }
+
+            .card {
+                padding: 16px 12px;
+            }
+        }
+
+        /* Landscape mod için */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #signatureCanvas {
+                height: 250px;
             }
         }
     </style>
